@@ -426,6 +426,24 @@ menuAdapt.addEventListener('click', () => {
   menuAdapt.classList.remove('visible');
 });
 
+const progressBar = document.getElementById('progress-bar');
+const progressBarContainer = document.querySelector('.progress-bar-container');
+const progressValue = document.getElementById("progress-value");
+
+progressBar.addEventListener("progress", () => {
+  const value = (progressBar.value / progressBar.max) * 100;
+  progressValue.textContent = Math.round(value) + "%";
+});
+
+loadingManager.onLoad = function() {
+  progressBarContainer.style.display = 'none';
+}
+
+loadingManager.onProgress = function(url, loaded, total) {
+  progressBar.value = (loaded / total) * 100;
+}
+
+
 
 
 
