@@ -1,3 +1,6 @@
+// загрузка 3д модели и подключение библиотике
+
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -77,16 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (mediaQuery_2.matches) {
                                 object.scale.set(1.1 / 1.8, 1.1 / 1.8, 1.1 / 1.7);  // Для экранов меньше 375px
                             } else if (mediaQuery.matches) {
-                                object.scale.set(1.1 / 1.4, 1.1 / 1.4, 1.1 / 1.4);  // Для экранов меньше 820px
+                                object.scale.set(1.1 / 1.4, 1.1 / 1.4, 1.1 / 1.4);  // Для экранов меньше 1024px
                             } else {
-                                object.scale.set(1.1, 1.1, 1.1);  // Для экранов больше 820px
+                                object.scale.set(1.1, 1.1, 1.1);  // для экранов больше 1024px
                             }
                         }
                         
-                        // Вызываем функцию для начальной установки масштаба
+                     
                         updateModelScale();
                         
-                        // Добавляем слушатели изменений размеров экрана
+                
                         mediaQuery.addEventListener('change', updateModelScale);
                         mediaQuery_2.addEventListener('change', updateModelScale);
                         
@@ -184,71 +187,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Функция для получения случайного значения в диапазоне
+
+
+
 function getRandomValue(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-/* ============================
-   Инициализация фиксированных стилей
-   для изображений экрана .the_fourth_me_screen_scroll
-============================ */
 const scrollImagesNodeList = document.querySelectorAll('.scroll-image');
-// Преобразуем NodeList в массив для сортировки
 const scrollImages = Array.from(scrollImagesNodeList);
 
-// Для каждого изображения задаём фиксированное преобразование и случайный порядок
+
 scrollImages.forEach(img => {
   const randomX = getRandomValue(-30, 30);
   const randomY = getRandomValue(-30, 30);
   const randomScale = getRandomValue(0.5, 1.5);
-  // Сохраняем преобразование в data-атрибуте
   img.dataset.transform = `translate(${randomX}vw, ${randomY}vh) scale(${randomScale})`;
-  // Присваиваем случайное значение для определения порядка появления
   img.dataset.order = Math.random();
-  // Изначально скрываем изображение
   img.style.opacity = '0';
 });
 
-// Перемешиваем (сортируем) изображения по data-order
+
 scrollImages.sort((a, b) => parseFloat(a.dataset.order) - parseFloat(b.dataset.order));
 
-/* ============================
-   Обработчик скролла для показа изображений
-   (скролл не прокручивает экран, а служит триггером)
-============================ */
+
 let scrollPosition = 0;
 
 function handleScroll(event) {
-  event.preventDefault(); // предотвращаем стандартную прокрутку
+  event.preventDefault(); 
   const delta = event.deltaY > 0 ? 1 : -1;
   scrollPosition += delta;
   if (scrollPosition < 0) scrollPosition = 0;
   
-  // Определяем, сколько изображений показывать. Например, каждая единица scrollPosition – одно изображение
+ 
   const imagesToShow = Math.min(scrollImages.length, Math.floor(scrollPosition));
   
-  // Для первых imagesToShow элементов задаём фиксированное преобразование и делаем видимыми
+  
   scrollImages.forEach((img, index) => {
     if (index < imagesToShow) {
       img.style.opacity = '1';
-      // Применяем заранее заданное преобразование (без rotate)
+      
       img.style.transform = img.dataset.transform;
-      // Можно дополнительно задать z-index, если нужно (например, по порядку)
+    
       img.style.zIndex = index + 1;
+
     } else {
       img.style.opacity = '0';
     }
   });
 }
 
-// Привязываем обработчик события wheel к экрану с классом .the_fourth_me_screen_scroll
 const screen6 = document.querySelector('.the_fourth_me_screen_scroll');
 if (screen6) {
   screen6.addEventListener('wheel', handleScroll, { passive: false });
 }
 
-// Получаем ссылки на кнопки и экраны
+
 const menuButton = document.querySelector('.menu_button');
 const closeMenuButton = document.querySelector('.close_menu_button');
 const messageMenuButton = document.querySelector('.message_menu_button');
@@ -263,92 +257,92 @@ const shrinkableElements = document.querySelectorAll('.constant_line, .informati
 const model3D = document.querySelector('.model');
 const galleryImages = document.querySelectorAll('.small_gallery img');
 
-// Экраны
+// экраны
 const screen1 = document.querySelector('.the_first_screen');
 const screen3 = document.querySelector('.the_third_library_screen');
 const screen4 = document.querySelector('.the_fourth_me_screen');
 const screen5 = document.querySelector('.gallery_screen');
 const screen7 = document.querySelector ('.gradient_hi_screen')
-// screen6 уже используем для scrollImages
 
-// Массив всех экранов
+
+
 const screens = [screen1, screen3, screen4, screen5, screen6, screen7];
 
-// Функция для переключения экранов
+
 function switchScreen(targetScreen) {
   screens.forEach(screen => screen.classList.remove('visible'));
   targetScreen.classList.add('visible');
 }
 
-// Функция для получения текущего активного экрана
+
 function getCurrentScreen() {
   return screens.find(screen => screen.classList.contains('visible'));
 }
 
-// Обработчики для кнопок меню
+
 messageMenuButton.addEventListener('click', () => switchScreen(screen1));
 ilovemeButton.addEventListener('click', () => switchScreen(screen4));
 libraryButton.addEventListener('click', () => switchScreen(screen3));
 plastinka1.addEventListener('click', () => switchScreen(screen5));
 galleryButton.addEventListener('click', () => switchScreen(screen6));
 
-// Добавляем плавный переход для анимации элементов меню
+
 [...shrinkableElements, model3D].forEach(el => {
   if (el) el.style.transition = 'transform 0.5s ease, width 0.5s ease';
 });
 
-// Функция для изменения размеров и сдвига элементов меню
+
 function adjustElementsWidth(isMenuOpen) {
   if (mediaQuery.matches) {
-    // Убираем анимацию и сдвиг для элементов
+   
     shrinkableElements.forEach(element => {
-      element.style.transition = 'none'; // Отключаем анимацию
-      element.style.transform = 'translateX(0)'; // Без сдвига
+      element.style.transition = 'none'; 
+      element.style.transform = 'translateX(0)'; 
     });
 
     if (model3D) {
-      model3D.style.transition = 'none'; // Отключаем анимацию
-      model3D.style.transform = 'translateX(0)'; // Без сдвига
+      model3D.style.transition = 'none'; 
+      model3D.style.transform = 'translateX(0)'; 
     }
 
     if (plastinka1) {
-      plastinka1.style.transition = 'none'; // Отключаем анимацию
-      plastinka1.style.transform = 'translateX(0)'; // Без сдвига
+      plastinka1.style.transition = 'none'; 
+      plastinka1.style.transform = 'translateX(0)'; 
     }
 
     if (galleryButton) {
-      galleryButton.style.transition = 'none'; // Отключаем анимацию
-      galleryButton.style.transform = 'translateX(0)'; // Без сдвига
+      galleryButton.style.transition = 'none'; 
+      galleryButton.style.transform = 'translateX(0)'; 
     }
 
   } else {
-    // Для экранов больше или равных 820px применяем анимацию и сдвиг
+    
     shrinkableElements.forEach(element => {
-      element.style.transition = 'transform 0.5s ease, width 0.5s ease'; // Включаем анимацию
+      element.style.transition = 'transform 0.5s ease, width 0.5s ease'; 
       element.style.width = isMenuOpen ? 'calc(100vw - 30vw)' : '100vw';
       element.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     });
 
     if (model3D) {
-      model3D.style.transition = 'transform 0.5s ease'; // Включаем анимацию
+      model3D.style.transition = 'transform 0.5s ease'; 
       model3D.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     }
 
     if (plastinka1) {
-      plastinka1.style.transition = 'transform 0.5s ease, width 0.5s ease'; // Включаем анимацию
+      plastinka1.style.transition = 'transform 0.5s ease, width 0.5s ease'; 
       plastinka1.style.width = isMenuOpen ? 'calc(100vw + 30vw)' : '100vw';
       plastinka1.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     }
 
     if (galleryButton) {
-      galleryButton.style.transition = 'transform 0.5s ease, width 0.5s ease'; // Включаем анимацию
+      galleryButton.style.transition = 'transform 0.5s ease, width 0.5s ease'; 
       galleryButton.style.width = isMenuOpen ? 'calc(100vw + 30vw)' : '100vw';
       galleryButton.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     }
   }
 }
 
-// Открытие меню
+
 menuButton.addEventListener('click', () => {
   const currentScreen = getCurrentScreen();
   if (currentScreen === screen5) switchScreen(screen3);
@@ -362,7 +356,7 @@ menuButton.addEventListener('click', () => {
   closeMenuButton.style.display = 'block';
 });
 
-// Закрытие меню
+
 closeMenuButton.addEventListener('click', () => {
   menuOpen.classList.remove('active');
   setTimeout(() => {
@@ -373,7 +367,7 @@ closeMenuButton.addEventListener('click', () => {
   }, 300);
 });
 
-// Обработчик для картинок в галерее
+
 galleryImages.forEach((img, index) => {
   img.addEventListener('mouseenter', () => {
     galleryImages.forEach(i => i.className = '');
@@ -385,7 +379,7 @@ galleryImages.forEach((img, index) => {
   });
 });
 
-// Клик на plastinka1 (закрытие меню)
+
 plastinka1.addEventListener('click', () => {
   if (menuOpen.classList.contains('active')) closeMenuButton.click();
   switchScreen(screen5);
@@ -400,7 +394,7 @@ screen7.addEventListener('click', () => {
   if (menuOpen.classList.contains('active')) closeMenuButton.click();
 });
 
-// Для закрытия меню по клику на menuAdapt
+
 menuAdapt.addEventListener('click', () => {
   menuOpen.classList.remove('active');
   setTimeout(() => {
@@ -412,7 +406,7 @@ menuAdapt.addEventListener('click', () => {
 });
 
 const mediaQuery = window.matchMedia('(max-width: 1024px)');
-const divsToHide = document.querySelectorAll('.Image_12, .Image_13, .Image_1'); // перечисли классы нужных div
+const divsToHide = document.querySelectorAll('.Image_12, .Image_13, .Image_1'); 
 
 function updateDivVisibility() {
     divsToHide.forEach(div => {
@@ -427,12 +421,12 @@ menuButton.addEventListener('click', () => {
   menuAdapt.classList.add('visible');
 });
 
-// Обработчик для клика на menuAdapt (скрытие меню)
+
 menuAdapt.addEventListener('click', () => {
   menuAdapt.classList.remove('visible');
 });
 
-// Проверка для экранов с шириной меньше 820px
+
 
 
 

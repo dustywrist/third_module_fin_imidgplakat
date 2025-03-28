@@ -1,8 +1,8 @@
-/* Основные стили */
+
 body {
-  overflow-x: hidden; /* Скрыть вертикальную прокрутку для body */
+  overflow-x: hidden; 
   overflow-y: hidden;
-  height: 100vh; /* Полная высота экрана */
+  height: 100vh; 
   box-sizing: border-box;
   background-color: #F7F7F7;
   padding: 0;
@@ -58,7 +58,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Стили для кнопки меню */
+/* стили для кнопки меню */
 .menu_button {
   z-index: 100;
   width: 4vw;
@@ -83,18 +83,17 @@ body {
   cursor: pointer;
 }
 
-/* Анимация появления menu_open */
+
 .menu_open {
   z-index: 100;
-  display: none; /* Скрыто по умолчанию */
-  /* flex-direction: column; */
+  display: none; 
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   width: 28vw;
   position: fixed;
   top: 0;
-  left: -30vw; /* Скрыто за левым краем */
+  left: -30vw; 
   padding: 7px;
   height: 100vh; 
   overflow: hidden;
@@ -112,9 +111,9 @@ body {
   overflow-y: scroll; 
 }
 
-/* Стили для кнопки закрытия */
+
 .close_menu_button {
-  display: none; /* Скрыта по умолчанию */
+  display: none; 
   cursor: pointer;
   border-radius: 50%;
   width: 2vw;
@@ -126,23 +125,23 @@ body {
   background-position: center;
   position: fixed;
   margin: 1vw 29vw;
-  opacity: 0; /* Начальная прозрачность */
-  transition: left 0.2s ease-in-out, opacity 0.2s ease; /* Анимация движения и появления */
+  opacity: 0; 
+  transition: left 0.2s ease-in-out, opacity 0.2s ease; 
   z-index: 100;
 }
 
-/* Анимация кнопки закрытия при наведении */
+
 .close_menu_button:hover {
   background-color: #626262;
   background-image: url(../images/close_menu_button_2.0.svg);
 }
 
 .close_menu_button{
-  left: 0; /* Показываем меню */
-  opacity: 1; /* Делаем видимым */
+  left: 0; 
+  opacity: 1; 
 }
 
-/* Стили для элементов меню */
+
 .menu_open div {
   cursor: pointer;
   margin: 5px 0;
@@ -164,8 +163,9 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
   width: 100%;
-height: 8.8vw;
+  height: 8.8vw;
 }
+
 
 .library_menu_button {
   width: 100%;
@@ -191,14 +191,14 @@ height: 8.8vw;
   background-size: 100%;
 }
 
-/* Плавное изменение ширины для элементов */
+
 .constant_line,
 .information_line {
-  transition: width 0.2s ease; /* Анимация изменения ширины */
+  transition: width 0.2s ease; 
 }
 
 
-/* Стили для скрытия и показа экранов */
+
 .menu_adapt,
 .the_fourth_me_screen_scroll,
 .gallery_screen,
@@ -209,6 +209,7 @@ height: 8.8vw;
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
+
 
 .menu_adapt.visible,
 .the_fourth_me_screen_scroll.visible,
@@ -233,24 +234,24 @@ height: 8.8vw;
 
 @keyframes moveUpDown {
   0% {
-    transform: translateY(0); /* Начальная позиция */
+    transform: translateY(0); 
   }
   25% {
-    transform: translateY(-1vw); /* Двигаемся немного вверх */
+    transform: translateY(-1vw); 
   }
   50% {
-    transform: translateY(1vw); /* Двигаемся немного вниз */
+    transform: translateY(1vw); 
   }
   75% {
-    transform: translateY(0); /* Начальная позиция */
+    transform: translateY(0); 
   }
   
   100% {
-    transform: translateY(-1vw); /* Начальная позиция */
+    transform: translateY(-1vw); 
   }
 }
 
-/* Применяем анимацию к the_main_plastinka */
+
 .the_main_plastinka {
   top: -4vw;
   display: flex;
@@ -259,7 +260,7 @@ height: 8.8vw;
   justify-content: center;
   align-items: center;
   position: relative;
-  animation: moveUpDown 15s ease-in-out infinite; /* Анимация вверх-вниз */
+  animation: moveUpDown 15s ease-in-out infinite; 
 }
 
 .the_first_plastinka {
@@ -308,9 +309,9 @@ height: 8.8vw;
   cursor: pointer;
 }
 
-/* Увеличиваем картинку в два раза при наведении */
+
 .small_gallery img.active {
-  transform: scale(4); /* Изменено с 1.8 на 2 */
+  transform: scale(4); 
   z-index: 4;
 }
 
@@ -332,8 +333,9 @@ height: 8.8vw;
   justify-content: center;
   align-items: center;
   position: relative;
-  animation: moveUpDown 15s ease-in-out infinite; /* Анимация вверх-вниз */
+  animation: moveUpDown 15s ease-in-out infinite; 
 }
+
 
 .hi_me_screen_imgme {
   background-image: url(../images/loliki.svg);
@@ -364,10 +366,10 @@ height: 8.8vw;
 }
 
 .loliki {
-  max-width: 80vw; /* Максимальная ширина 60% от вьюпорта */
-  max-height: 80vh; /* Ограничение по высоте для адаптации */
-  width: auto; /* Автоматическая ширина для сохранения пропорций */
-  height: auto; /* Автоматическая высота для сохранения пропорций */
+  max-width: 80vw; 
+  max-height: 80vh; 
+  width: auto; 
+  height: auto; 
 }
 
 
@@ -379,12 +381,10 @@ height: 8.8vw;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
 }
 
 .scroll-image {
   position: absolute;
   opacity: 0;
- 
 }
 
