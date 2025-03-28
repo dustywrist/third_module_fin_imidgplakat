@@ -1,0 +1,389 @@
+/* Основные стили */
+body {
+  overflow-x: hidden; /* Скрыть вертикальную прокрутку для body */
+  overflow-y: hidden;
+  height: 100vh; /* Полная высота экрана */
+  box-sizing: border-box;
+  background-color: #F7F7F7;
+  padding: 0;
+  margin: 0;
+}
+
+.model {
+  width: 100vw;
+  height: 100vh;
+}
+
+.gradient_hi_screen {
+
+  background-image: linear-gradient(#08FF0C 8%, rgba(255, 0, 0, 0));
+}
+
+.constant_line {
+  margin-top: 100vw;
+  width: 100vw;
+  min-height: 10vw;
+  gap: 1vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0vw;
+  z-index: 100;
+}
+
+.naming {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bold';
+  font-weight: 700;
+  font-size: 1vw;
+  color: black;
+  width: 100vw;
+}
+
+.information_line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 15vw;
+}
+
+.constant_text_style {
+  color: black;
+  font-family: 'Regular';
+  font-size: 0.8vw;
+  text-transform: uppercase;
+}
+
+/* Стили для кнопки меню */
+.menu_button {
+  z-index: 100;
+  width: 4vw;
+  height: 4vw;
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1vw;
+  background: #FFF;
+  overflow: hidden;
+  padding: 0.5vw;
+  outline: none;
+  border: none;
+  background-image: url(../images/_.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  cursor: pointer;
+}
+
+/* Анимация появления menu_open */
+.menu_open {
+  z-index: 100;
+  display: none; /* Скрыто по умолчанию */
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 28vw;
+  position: fixed;
+  top: 0;
+  left: -30vw; /* Скрыто за левым краем */
+  padding: 7px;
+  height: 100vh; 
+  overflow: hidden;
+  transition: left 0.2s ease-in-out, opacity 0.2s ease;
+  opacity: 0; 
+  
+}
+
+.menu_open.active {
+  left: 0; 
+  opacity: 1; 
+}
+
+.menu_open:hover {
+  overflow-y: scroll; 
+}
+
+/* Стили для кнопки закрытия */
+.close_menu_button {
+  display: none; /* Скрыта по умолчанию */
+  cursor: pointer;
+  border-radius: 50%;
+  width: 2vw;
+  height: 2vw;
+  background: #FFF;
+  background-image: url(../images/close_button.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  position: fixed;
+  margin: 1vw 29vw;
+  opacity: 0; /* Начальная прозрачность */
+  transition: left 0.2s ease-in-out, opacity 0.2s ease; /* Анимация движения и появления */
+  z-index: 100;
+}
+
+/* Анимация кнопки закрытия при наведении */
+.close_menu_button:hover {
+  background-color: #626262;
+  background-image: url(../images/close_menu_button_2.0.svg);
+}
+
+.close_menu_button{
+  left: 0; /* Показываем меню */
+  opacity: 1; /* Делаем видимым */
+}
+
+/* Стили для элементов меню */
+.menu_open div {
+  cursor: pointer;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.message_menu_button {
+  width: 100%;
+  height: 11.2vw;
+  background-image: url(../images/first_in_menu.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+
+
+.me_menu_button {
+  background-image: url(../images/final_button.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+height: 8.8vw;
+}
+
+.library_menu_button {
+  width: 100%;
+  height: 8.8vw;
+  background-image: url(../images/library_button_menu.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.information_menu_button {
+  width: 100%;
+  height: 30vw;
+  background-image: url(../images/information_menu_lolik.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.dop_inf {
+  width: 100%;
+  height: 51vw;
+  background-image: url(../images/dop_info_2.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/* Плавное изменение ширины для элементов */
+.constant_line,
+.information_line {
+  transition: width 0.2s ease; /* Анимация изменения ширины */
+}
+
+
+/* Стили для скрытия и показа экранов */
+.menu_adapt,
+.the_fourth_me_screen_scroll,
+.gallery_screen,
+.the_first_screen,
+.the_third_library_screen,
+.the_fourth_me_screen {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.menu_adapt.visible,
+.the_fourth_me_screen_scroll.visible,
+.gallery_screen.visible,
+.the_first_screen.visible,
+.the_third_library_screen.visible,
+.the_fourth_me_screen.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+.the_third_library_screen {
+  top: 0;
+  background-image: linear-gradient(#EAFE07 8%, rgba(255, 0, 0, 0));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0); /* Начальная позиция */
+  }
+  25% {
+    transform: translateY(-1vw); /* Двигаемся немного вверх */
+  }
+  50% {
+    transform: translateY(1vw); /* Двигаемся немного вниз */
+  }
+  75% {
+    transform: translateY(0); /* Начальная позиция */
+  }
+  
+  100% {
+    transform: translateY(-1vw); /* Начальная позиция */
+  }
+}
+
+/* Применяем анимацию к the_main_plastinka */
+.the_main_plastinka {
+  top: -4vw;
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: moveUpDown 15s ease-in-out infinite; /* Анимация вверх-вниз */
+}
+
+.the_first_plastinka {
+  background-image: url(../images/album1.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 35vw;
+  height: 35vw;
+  position: relative;
+}
+
+.the_fourth_me_screen {
+  top: 0;
+  background-image: linear-gradient(#FE0408 8%, rgba(255, 0, 0, 0));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+
+}
+
+
+.gallery_screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  background-image: linear-gradient(#EAFE07 8%, rgba(255, 0, 0, 0));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.small_gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vw;
+  width: 100vw;
+  gap: 0.2vw;
+}
+
+.small_gallery img {
+  width: 6vw;
+  transition: transform 0.4s, z-index 0.4s;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Увеличиваем картинку в два раза при наведении */
+.small_gallery img.active {
+  transform: scale(4); /* Изменено с 1.8 на 2 */
+  z-index: 4;
+}
+
+.small_gallery img.neighbor {
+  transform: scale(2.8);
+  z-index: 3;
+}
+
+.small_gallery img.second-neighbor {
+  transform: scale(2.4);
+  z-index: 2;
+}
+
+.hi_me_screen {
+  top: 2vw;
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: moveUpDown 15s ease-in-out infinite; /* Анимация вверх-вниз */
+}
+
+.hi_me_screen_imgme {
+  background-image: url(../images/loliki.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 45vw;
+  height: 45vw;
+  position: relative;
+}
+
+
+.the_fourth_me_screen_scroll {
+  display: flex;
+  top: 0;
+  background-image: linear-gradient(#FE0408 8%, rgba(255, 0, 0, 0));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.back_scroll_it {
+  margin-top: -4vw;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loliki {
+  max-width: 80vw; /* Максимальная ширина 60% от вьюпорта */
+  max-height: 80vh; /* Ограничение по высоте для адаптации */
+  width: auto; /* Автоматическая ширина для сохранения пропорций */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+
+.image-container {
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+}
+
+.scroll-image {
+  position: absolute;
+  opacity: 0;
+ 
+}
+

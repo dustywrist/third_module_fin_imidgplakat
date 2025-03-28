@@ -1,0 +1,60 @@
+@media screen and (max-width: 820px) {
+
+    .menu_button {
+        width: 8vw;
+        height: 8vw;
+    }
+
+    .naming {
+        font-size: 1.7vw;
+      }
+      
+      .constant_text_style {
+        font-size: 1.2vw;
+      }
+
+      .information_line {
+      padding: 1vw;
+      }
+
+      .the_first_plastinka {
+        width: 80vw;
+        height: 80vw;
+      }
+
+      .hi_me_screen_imgme {
+        width: 80vw;
+        height: 80vw;
+      }
+
+      .small_gallery {
+        flex-direction: column;
+        position: absolute;
+        margin-top: -11vw;
+      }
+
+      .small_gallery img {
+        width: 9vw;
+
+      }
+
+      .small_gallery img.active {
+        transform: scale(5); /* Изменено с 1.8 на 2 */
+        z-index: 4;
+      }
+      
+      .small_gallery img.neighbor {
+        transform: scale(3.8);
+        z-index: 3;
+      }
+      
+      .small_gallery img.second-neighbor {
+        transform: scale(2.4);
+        z-index: 2;
+      }
+
+      
+
+  
+
+  }

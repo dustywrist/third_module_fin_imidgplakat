@@ -1,0 +1,72 @@
+@media screen and (max-width: 375px) {
+
+    .menu_button {
+        width: 15vw;
+        height: 15vw;
+        border-radius: 3vw;
+        top: 2%;
+        left: 2%;
+    }
+
+    .naming {
+        font-size: 3vw;
+      }
+      
+      .constant_text_style {
+        font-size: 2vw;
+      }
+
+      .information_line {
+      padding: 2vw;
+      }
+
+      .the_first_plastinka {
+        width: 90vw;
+        height: 90vw;
+      }
+
+      .small_gallery {
+        flex-direction: column;
+        position: absolute;
+        margin-top: -25vw;
+      }
+
+      .small_gallery img {
+        width: 10vw;
+
+      }
+
+      .hi_me_screen_imgme {
+        width: 90vw;
+        height: 90vw;
+      }
+
+      .menu_open {
+        width: 80vw; 
+        height: 100vh; 
+        padding: 0 10vw;
+      }
+       
+      .message_menu_button {
+        height: 32.5vw;
+      }
+
+      .library_menu_button {
+        height: 25vw;
+      }
+      
+      .information_menu_button {
+        height: 86vw;
+      }
+
+      .dop_inf {
+        height: 143vw;
+      }
+
+      .me_menu_button {
+        height: 25vw;
+    }
+
+
+
+}
