@@ -390,27 +390,3 @@ body {
 
 
     
-.progress-bar-container {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: linear-gradient(#0037FF 30%, rgba(255, 0, 0, 0));;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 100;
-}
-
-#progress-bar {
-  width: 125px;
-  height: 12px;
-}
-
-label {
-  color: white;
-  font-size: 14px;
-  font-family: 'Regular';
-  margin: 15px;
-}
