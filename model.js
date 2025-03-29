@@ -198,36 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-if (screen6) {
-  screen6.addEventListener('wheel', (e) => {
-    if (window.innerWidth >= 1024) {
-      e.preventDefault();
-      handleScrollLike(e.deltaY);
-    }
-  }, { passive: false });
-}
-
-let touchStartY = null;
-
-if (screen6) {
-  screen6.addEventListener('touchstart', (e) => {
-    if (window.innerWidth < 1024) {
-      touchStartY = e.touches[0].clientY;
-    }
-  });
-
-  screen6.addEventListener('touchmove', (e) => {
-    if (window.innerWidth < 1024 && touchStartY !== null) {
-      const touchEndY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
-      if (Math.abs(deltaY) > 10) { 
-        e.preventDefault();
-        handleScrollLike(deltaY);
-        touchStartY = touchEndY; 
-      }
-    }
-  }, { passive: false });
-}
 
 function getRandomValue(min, max) {
   return Math.random() * (max - min) + min;
@@ -281,6 +251,37 @@ if (screen6) {
   screen6.addEventListener('wheel', handleScroll, { passive: false });
 }
 
+
+if (screen6) {
+  screen6.addEventListener('wheel', (e) => {
+    if (window.innerWidth >= 1024) {
+      e.preventDefault();
+      handleScrollLike(e.deltaY);
+    }
+  }, { passive: false });
+}
+
+let touchStartY = null;
+
+if (screen6) {
+  screen6.addEventListener('touchstart', (e) => {
+    if (window.innerWidth < 1024) {
+      touchStartY = e.touches[0].clientY;
+    }
+  });
+
+  screen6.addEventListener('touchmove', (e) => {
+    if (window.innerWidth < 1024 && touchStartY !== null) {
+      const touchEndY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+      if (Math.abs(deltaY) > 10) { 
+        e.preventDefault();
+        handleScrollLike(deltaY);
+        touchStartY = touchEndY; 
+      }
+    }
+  }, { passive: false });
+}
 
 const menuButton = document.querySelector('.menu_button');
 const closeMenuButton = document.querySelector('.close_menu_button');
