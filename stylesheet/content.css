@@ -184,7 +184,7 @@ body {
 .message_menu_button {
   width: 100%;
   height: 11.2vw;
-  background-image: url(../images/first_in_menu.svg);
+  background-image: url(../images/first_in_menu.png);
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -219,7 +219,7 @@ body {
 .dop_inf {
   width: 100%;
   height: 51vw;
-  background-image: url(../images/dop_info_2.svg);
+  background-image: url(../images/dop_info_2.png);
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -297,7 +297,7 @@ body {
 }
 
 .the_first_plastinka {
-  background-image: url(../images/album1.svg);
+  background-image: url(../images/album1.png);
   background-repeat: no-repeat;
   background-size: 100%;
   width: 35vw;
@@ -371,7 +371,7 @@ body {
 
 
 .hi_me_screen_imgme {
-  background-image: url(../images/loliki.svg);
+  background-image: url(../images/loliki.png);
   background-repeat: no-repeat;
   background-size: 100%;
   width: 45vw;
