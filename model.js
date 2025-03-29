@@ -1,6 +1,3 @@
-// загрузка 3д модели и подключение библиотике
-
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -78,18 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         function updateModelScale() {
                             if (mediaQuery_2.matches) {
-                                object.scale.set(1.1 / 1.8, 1.1 / 1.8, 1.1 / 1.7);  // Для экранов меньше 375px
+                                object.scale.set(1.1 / 1.8, 1.1 / 1.8, 1.1 / 1.7);  
                             } else if (mediaQuery.matches) {
-                                object.scale.set(1.1 / 1.4, 1.1 / 1.4, 1.1 / 1.4);  // Для экранов меньше 1024px
+                                object.scale.set(1.1 / 1.4, 1.1 / 1.4, 1.1 / 1.4);  
                             } else {
-                                object.scale.set(1.1, 1.1, 1.1);  // для экранов больше 1024px
+                                object.scale.set(1.1, 1.1, 1.1);  
                             }
                         }
                         
-                     
+                        
                         updateModelScale();
                         
-                
+                        
                         mediaQuery.addEventListener('change', updateModelScale);
                         mediaQuery_2.addEventListener('change', updateModelScale);
                         
@@ -187,11 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
           loadingScreen.classList.add('hidden');
       }, 500); 
   });
-
-
+  
 });
-
-
 
 
 
@@ -202,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function getRandomValue(min, max) {
   return Math.random() * (max - min) + min;
 }
+
 
 const scrollImagesNodeList = document.querySelectorAll('.scroll-image');
 const scrollImages = Array.from(scrollImagesNodeList);
@@ -214,6 +209,7 @@ scrollImages.forEach(img => {
   img.dataset.transform = `translate(${randomX}vw, ${randomY}vh) scale(${randomScale})`;
   img.dataset.order = Math.random();
   img.style.opacity = '0';
+  img.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; 
 });
 
 
@@ -222,37 +218,26 @@ scrollImages.sort((a, b) => parseFloat(a.dataset.order) - parseFloat(b.dataset.o
 
 let scrollPosition = 0;
 
-function handleScroll(event) {
-  event.preventDefault(); 
-  const delta = event.deltaY > 0 ? 1 : -1;
-  scrollPosition += delta;
+function handleScrollLike(delta) {
+  scrollPosition += delta > 0 ? 1 : -1;
   if (scrollPosition < 0) scrollPosition = 0;
-  
- 
-  const imagesToShow = Math.min(scrollImages.length, Math.floor(scrollPosition));
-  
-  
+  if (scrollPosition > scrollImages.length) scrollPosition = scrollImages.length;
+
+  const imagesToShow = Math.floor(scrollPosition);
+
   scrollImages.forEach((img, index) => {
     if (index < imagesToShow) {
       img.style.opacity = '1';
-      
       img.style.transform = img.dataset.transform;
-    
       img.style.zIndex = index + 1;
-
     } else {
       img.style.opacity = '0';
     }
   });
 }
 
+
 const screen6 = document.querySelector('.the_fourth_me_screen_scroll');
-
-if (screen6) {
-  screen6.addEventListener('wheel', handleScroll, { passive: false });
-}
-
-
 if (screen6) {
   screen6.addEventListener('wheel', (e) => {
     if (window.innerWidth >= 1024) {
@@ -261,6 +246,7 @@ if (screen6) {
     }
   }, { passive: false });
 }
+
 
 let touchStartY = null;
 
@@ -284,6 +270,7 @@ if (screen6) {
   }, { passive: false });
 }
 
+
 const menuButton = document.querySelector('.menu_button');
 const closeMenuButton = document.querySelector('.close_menu_button');
 const messageMenuButton = document.querySelector('.message_menu_button');
@@ -298,28 +285,22 @@ const shrinkableElements = document.querySelectorAll('.constant_line, .informati
 const model3D = document.querySelector('.model');
 const galleryImages = document.querySelectorAll('.small_gallery img');
 
-// экраны
 const screen1 = document.querySelector('.the_first_screen');
 const screen3 = document.querySelector('.the_third_library_screen');
 const screen4 = document.querySelector('.the_fourth_me_screen');
 const screen5 = document.querySelector('.gallery_screen');
-const screen7 = document.querySelector ('.gradient_hi_screen')
-
-
+const screen7 = document.querySelector('.gradient_hi_screen');
 
 const screens = [screen1, screen3, screen4, screen5, screen6, screen7];
-
 
 function switchScreen(targetScreen) {
   screens.forEach(screen => screen.classList.remove('visible'));
   targetScreen.classList.add('visible');
 }
 
-
 function getCurrentScreen() {
   return screens.find(screen => screen.classList.contains('visible'));
 }
-
 
 messageMenuButton.addEventListener('click', () => switchScreen(screen1));
 ilovemeButton.addEventListener('click', () => switchScreen(screen4));
@@ -327,62 +308,57 @@ libraryButton.addEventListener('click', () => switchScreen(screen3));
 plastinka1.addEventListener('click', () => switchScreen(screen5));
 galleryButton.addEventListener('click', () => switchScreen(screen6));
 
-
 [...shrinkableElements, model3D].forEach(el => {
   if (el) el.style.transition = 'transform 0.5s ease, width 0.5s ease';
 });
 
-
 function adjustElementsWidth(isMenuOpen) {
   if (mediaQuery.matches) {
-   
     shrinkableElements.forEach(element => {
-      element.style.transition = 'none'; 
-      element.style.transform = 'translateX(0)'; 
+      element.style.transition = 'none';
+      element.style.transform = 'translateX(0)';
     });
 
     if (model3D) {
-      model3D.style.transition = 'none'; 
-      model3D.style.transform = 'translateX(0)'; 
+      model3D.style.transition = 'none';
+      model3D.style.transform = 'translateX(0)';
     }
 
     if (plastinka1) {
-      plastinka1.style.transition = 'none'; 
-      plastinka1.style.transform = 'translateX(0)'; 
+      plastinka1.style.transition = 'none';
+      plastinka1.style.transform = 'translateX(0)';
     }
 
     if (galleryButton) {
-      galleryButton.style.transition = 'none'; 
-      galleryButton.style.transform = 'translateX(0)'; 
+      galleryButton.style.transition = 'none';
+      galleryButton.style.transform = 'translateX(0)';
     }
 
   } else {
-    
     shrinkableElements.forEach(element => {
-      element.style.transition = 'transform 0.5s ease, width 0.5s ease'; 
+      element.style.transition = 'transform 0.5s ease, width 0.5s ease';
       element.style.width = isMenuOpen ? 'calc(100vw - 30vw)' : '100vw';
       element.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     });
 
     if (model3D) {
-      model3D.style.transition = 'transform 0.5s ease'; 
+      model3D.style.transition = 'transform 0.5s ease';
       model3D.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     }
 
     if (plastinka1) {
-      plastinka1.style.transition = 'transform 0.5s ease, width 0.5s ease'; 
+      plastinka1.style.transition = 'transform 0.5s ease, width 0.5s ease';
       plastinka1.style.width = isMenuOpen ? 'calc(100vw + 30vw)' : '100vw';
       plastinka1.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     }
 
     if (galleryButton) {
-      galleryButton.style.transition = 'transform 0.5s ease, width 0.5s ease'; 
+      galleryButton.style.transition = 'transform 0.5s ease, width 0.5s ease';
       galleryButton.style.width = isMenuOpen ? 'calc(100vw + 30vw)' : '100vw';
       galleryButton.style.transform = isMenuOpen ? 'translateX(15vw)' : 'translateX(0)';
     }
   }
 }
-
 
 menuButton.addEventListener('click', () => {
   const currentScreen = getCurrentScreen();
@@ -397,7 +373,6 @@ menuButton.addEventListener('click', () => {
   closeMenuButton.style.display = 'block';
 });
 
-
 closeMenuButton.addEventListener('click', () => {
   menuOpen.classList.remove('active');
   setTimeout(() => {
@@ -407,7 +382,6 @@ closeMenuButton.addEventListener('click', () => {
     adjustElementsWidth(false);
   }, 300);
 });
-
 
 galleryImages.forEach((img, index) => {
   img.addEventListener('mouseenter', () => {
@@ -419,7 +393,6 @@ galleryImages.forEach((img, index) => {
     if (galleryImages[index + 2]) galleryImages[index + 2].classList.add('second-neighbor');
   });
 });
-
 
 plastinka1.addEventListener('click', () => {
   if (menuOpen.classList.contains('active')) closeMenuButton.click();
@@ -435,7 +408,6 @@ screen7.addEventListener('click', () => {
   if (menuOpen.classList.contains('active')) closeMenuButton.click();
 });
 
-
 menuAdapt.addEventListener('click', () => {
   menuOpen.classList.remove('active');
   setTimeout(() => {
@@ -447,12 +419,12 @@ menuAdapt.addEventListener('click', () => {
 });
 
 const mediaQuery = window.matchMedia('(max-width: 1024px)');
-const divsToHide = document.querySelectorAll('.Image_12, .Image_13, .Image_1'); 
+const divsToHide = document.querySelectorAll('.Image_12, .Image_13, .Image_1');
 
 function updateDivVisibility() {
-    divsToHide.forEach(div => {
-        div.style.display = mediaQuery.matches ? 'none' : 'block';
-    });
+  divsToHide.forEach(div => {
+    div.style.display = mediaQuery.matches ? 'none' : 'block';
+  });
 }
 
 updateDivVisibility();
@@ -462,13 +434,6 @@ menuButton.addEventListener('click', () => {
   menuAdapt.classList.add('visible');
 });
 
-
 menuAdapt.addEventListener('click', () => {
   menuAdapt.classList.remove('visible');
 });
-
-
-
-
-
-
