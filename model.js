@@ -247,6 +247,7 @@ function handleScroll(event) {
 }
 
 const screen6 = document.querySelector('.the_fourth_me_screen_scroll');
+
 if (screen6) {
   screen6.addEventListener('wheel', handleScroll, { passive: false });
 }
