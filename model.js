@@ -180,6 +180,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initThree();
+
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loading-screen');
+      setTimeout(() => {
+          loadingScreen.classList.add('hidden');
+      }, 500); 
+  });
+
+
 });
 
 
@@ -189,6 +198,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+if (screen6) {
+  screen6.addEventListener('wheel', (e) => {
+    if (window.innerWidth >= 1024) {
+      e.preventDefault();
+      handleScrollLike(e.deltaY);
+    }
+  }, { passive: false });
+}
+
+let touchStartY = null;
+
+if (screen6) {
+  screen6.addEventListener('touchstart', (e) => {
+    if (window.innerWidth < 1024) {
+      touchStartY = e.touches[0].clientY;
+    }
+  });
+
+  screen6.addEventListener('touchmove', (e) => {
+    if (window.innerWidth < 1024 && touchStartY !== null) {
+      const touchEndY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+      if (Math.abs(deltaY) > 10) { 
+        e.preventDefault();
+        handleScrollLike(deltaY);
+        touchStartY = touchEndY; 
+      }
+    }
+  }, { passive: false });
+}
 
 function getRandomValue(min, max) {
   return Math.random() * (max - min) + min;

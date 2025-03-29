@@ -9,6 +9,39 @@ body {
   margin: 0;
 }
 
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  font-family: 'Regular';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vw;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dots::after {
+  content: '';
+  animation: dots-appear 1s infinite steps(4);
+}
+
+@keyframes dots-appear {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+}
 .model {
   width: 100vw;
   height: 100vh;
@@ -387,6 +420,8 @@ body {
   position: absolute;
   opacity: 0;
 }
+
+
 
 
     
